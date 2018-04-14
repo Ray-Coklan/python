@@ -1,0 +1,27 @@
+<h1>Add a Trip, {{current_user.first_name}}</h1>
+<form action="/exam/{{current_user.id}}/add" method="post">
+    {% csrf_token %} 
+    Destination:
+    <br>
+    <input type="text" name="destination" required>
+    <br> Description
+    <br>
+    <input type="text" name="description" required>
+    <br>
+    <br>Travel date from: 
+    <br>
+    <input type="date" name="travel_date_from" required>
+    <br>
+    <br>Travel date To: 
+    <br>
+    <input type="date" name="travel_date_to" required>
+    <br>
+    <input type="submit" name="add" value="add">
+</form>
+<a href='/exam'>Home</a>
+<a href='/logout'>Logout</a>
+
+
+
+
+

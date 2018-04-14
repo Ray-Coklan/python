@@ -1,0 +1,67 @@
+<h1>Welcome, {{current_user.first_name}}</h1>
+
+
+<h2>Your Trip Schedules</h2>
+{% for show_travel in current_user.created_by.all %}
+<table>
+    <tr>
+    <th>Destination</th>
+    <td>{{show_travel.destination}}</td>
+    <th>Travel Start Date</th>
+    <td>{{show_travel.travel_date_from}}</td>
+    <th>Travel End Date</th>
+    <td>{{show_travel.travel_date_to}}</td>
+    <th>Plan</th>
+    <td>{{show_travel.description}}</td>
+</tr>
+</table>
+{% endfor %}
+
+{% for show_travel in current_user.join_trip.all %}
+<table>
+        <tr>
+        <th>Destination</th>
+        <td>{{show_travel.destination}}</td>
+        <th>Travel Start Date</th>
+        <td>{{show_travel.travel_date_from}}</td>
+        <th>Travel End Date</th>
+        <td>{{show_travel.travel_date_to}}</td>
+        <th>Plan</th>
+        <td>{{show_travel.description}}</td>
+    </tr>
+    </table>
+{% endfor %}
+
+
+<h1>Other User's Travel Plans</h1>
+
+
+{% for show_travel in show_travel %}
+{% if show_travel in user.created_by.all %}
+<p>No one else has created any trips yet</p>
+{% else %}
+<table>
+    <tr>
+        <th>created by</th>
+        <td>{{show_travel.creator.first_name}}</td>
+        <th>Destination</th>
+        <td><a href ='/exam/{{show_travel.id}}/show'>{{show_travel.destination}}</a></td>
+        <th>Description</th>
+        <td>{{show_travel.description}}</td>
+        <th>Travel Start Date</th>
+        <td>{{show_travel.travel_date_from}}</td>
+        <th>Travel End Date</th>
+        <td>{{show_travel.travel_date_to}}</td>
+        <th>Do You want to join?</th>
+        <td><a href ='/exam/{{show_travel.id}}/join'>Join</a></td>
+    </tr>
+</table>
+{% endif %}
+{% endfor %}
+
+
+
+<a href = '/exam/{{current_user.id}}/process'>Add a Trip</a>
+</br>
+
+<a href='/logout'>Logout</a>

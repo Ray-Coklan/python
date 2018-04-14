@@ -1,0 +1,15 @@
+<h1>Destination</h1>
+{{show_travel.destination}}
+
+
+<h1>Other Users Joining the trip</h1>
+{% for user in user %}
+{% if show_travel in current_user.created_by.all %}
+<p>You've joined this trip, you'll be with these people:</p>
+{% else %}
+{{user.first_name}}
+{% endif %}
+{% endfor %}
+
+<a href='/exam'>Home</a>
+<a href='/logout'>Logout</a>
